@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solomia Elegance Ultra-Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.png" type="image/png">
+
+<style>
+/* Reset y básicos */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Roboto',sans-serif;background:#fdfcf9;color:#333;line-height:1.6;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* Header */
+header{position:fixed;top:0;width:100%;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:20px 50px;box-shadow:0 2px 12px rgba(0,0,0,0.1);z-index:100;}
+header h1{font-family:'Playfair Display',serif;font-size:28px;color:#b53b3b;letter-spacing:2px;}
+nav a{margin-left:30px;font-weight:500;transition:0.3s;color:#555;}
+nav a:hover{color:#b53b3b;}
+
+/* Hero Parallax */
+.hero{height:90vh;background:url('hero.jpg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
+.hero-content{position:relative;z-index:1;animation:fadeIn 2s ease;}
+.hero h2{font-family:'Playfair Display',serif;font-size:56px;margin-bottom:20px;letter-spacing:3px;}
+.hero p{font-size:22px;margin-bottom:30px;}
+.hero button{padding:14px 35px;font-size:20px;border:none;background:#b53b3b;color:#fff;cursor:pointer;border-radius:5px;transition:0.3s;}
+.hero button:hover{background:#902a2a;}
+
+/* Sections */
+section{padding:100px 50px;position:relative;overflow:hidden;}
+section h2{text-align:center;font-family:'Playfair Display',serif;font-size:42px;color:#b53b3b;margin-bottom:60px;}
+
+/* Menu */
+.filter-btns{text-align:center;margin-bottom:50px;}
+.filter-btns button{margin:0 10px;padding:10px 20px;border:none;border-radius:5px;background:#b53b3b;color:#fff;cursor:pointer;transition:0.3s;}
+.filter-btns button:hover{background:#902a2a;}
+.filter-btns button.active{background:#333;}
+
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.menu-item{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.1);transition:0.3s;transform:translateY(0);opacity:0;}
+.menu-item.show{opacity:1;transform:translateY(0);transition:0.6s;}
+.menu-item img{height:200px;object-fit:cover;}
+.menu-item-content{padding:20px;}
+.menu-item-content h3{font-family:'Playfair Display',serif;color:#b53b3b;margin-bottom:10px;}
+.menu-item-content p{color:#555;margin-bottom:10px;}
+.menu-item-content span{font-weight:700;color:#b53b3b;}
+
+/* Reservation */
+.reservation form{max-width:600px;margin:0 auto;display:grid;gap:20px;}
+.reservation input,.reservation textarea,.reservation select{padding:14px;border-radius:5px;border:1px solid #ccc;font-size:16px;width:100%;}
+.reservation button{padding:14px;font-size:20px;border:none;background:#b53b3b;color:#fff;cursor:pointer;border-radius:5px;transition:0.3s;}
+.reservation button:hover{background:#902a2a;}
+
+/* Footer */
+footer{background:#333;color:#fff;padding:50px;text-align:center;}
+footer a{color:#b53b3b;margin:0 10px;transition:0.3s;}
+footer a:hover{color:#fff;}
+
+/* Animations */
+@keyframes fadeIn{0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
+.fade-up{opacity:0;transform:translateY(20px);transition:0.8s ease-out;}
+.fade-up.show{opacity:1;transform:translateY(0);}
+
+/* Back to top */
+#topBtn{position:fixed;bottom:30px;right:30px;background:#b53b3b;color:#fff;border:none;padding:12px 18px;border-radius:50px;font-size:18px;cursor:pointer;display:none;z-index:200;transition:0.3s;}
+#topBtn:hover{background:#902a2a;}
+
+/* Responsive */
+@media(max-width:768px){
+  header{flex-direction:column;padding:20px;}
+  nav{margin-top:15px;}
+  .hero h2{font-size:36px;}
+  .hero p{font-size:18px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Solomia</h1>
+  <nav>
+    <a href="#menu">Menú</a>
+    <a href="#reservation">Reservas</a>
+    <a href="#contact">Contacto</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>Experiencia Culinaria Exclusiva</h2>
+    <p>Sabores que deleitan cada sentido</p>
+    <button onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Reserva Ahora</button>
+  </div>
+</section>
+
+<section id="menu" class="menu">
+  <h2>Nuestro Menú</h2>
+  <div class="filter-btns">
+    <button class="active" data-filter="all">Todos</button>
+    <button data-filter="entrada">Entradas</button>
+    <button data-filter="principal">Principales</button>
+    <button data-filter="postre">Postres</button>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-item fade-up" data-category="entrada">
+      <img src="plato1.jpg" alt="Entrada 1">
+      <div class="menu-item-content">
+        <h3>Bruschetta Gourmet</h3>
+        <p>Pan artesanal con tomate, albahaca y aceite de oliva premium.</p>
+        <span>8€</span>
+      </div>
+    </div>
+    <div class="menu-item fade-up" data-category="principal">
+      <img src="plato2.jpg" alt="Principal 1">
+      <div class="menu-item-content">
+        <h3>Filete de Salmón</h3>
+        <p>Salmón fresco a la plancha con salsa de limón y hierbas.</p>
+        <span>22€</span>
+      </div>
+    </div>
+    <div class="menu-item fade-up" data-category="postre">
+      <img src="plato3.jpg" alt="Postre 1">
+      <div class="menu-item-content">
+        <h3>Mousse de Chocolate</h3>
+        <p>Delicioso chocolate belga con toque de frutos rojos.</p>
+        <span>9€</span>
+      </div>
+    </div>
+    <div class="menu-item fade-up" data-category="principal">
+      <img src="plato4.jpg" alt="Principal 2">
+      <div class="menu-item-content">
+        <h3>Ravioli Trufado</h3>
+        <p>Pasta rellena de queso ricotta con salsa de trufa.</p>
+        <span>18€</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reservation" class="reservation">
+  <h2>Reserva tu Mesa</h2>
+  <form id="reservationForm">
+    <input type="text" placeholder="Nombre completo" required>
+    <input type="email" placeholder="Correo electrónico" required>
+    <input type="tel" placeholder="Teléfono" required>
+    <input type="date" required>
+    <input type="time" required>
+    <select required>
+      <option value="">Número de personas</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4+</option>
+    </select>
+    <textarea placeholder="Notas adicionales"></textarea>
+    <button type="submit">Reservar Ahora</button>
+  </form>
+</section>
+
+<footer id="contact">
+  <p>© 2026 Solomia | Síguenos en 
+    <a href="#">Instagram</a> | 
+    <a href="#">Facebook</a>
+  </p>
+</footer>
+
+<button id="topBtn" onclick="scrollToTop()">↑</button>
+
+<script>
+// Menú filtrable
+const filterButtons=document.querySelectorAll('.filter-btns button');
+const menuItems=document.querySelectorAll('.menu-item');
+
+filterButtons.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filterButtons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter=btn.getAttribute('data-filter');
+    menuItems.forEach(item=>{
+      if(filter==='all'||item.getAttribute('data-category')===filter){
+        item.style.display='block';
+        setTimeout(()=>item.classList.add('show'),50);
+      }else{
+        item.style.display='none';
+        item.classList.remove('show');
+      }
+    });
+  });
+});
+
+// Fade-in al hacer scroll
+const faders=document.querySelectorAll('.fade-up');
+const appearOptions={threshold:0.2,rootMargin:"0px 0px -50px 0px"};
+const appearOnScroll=new IntersectionObserver(function(entries,observer){
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    entry.target.classList.add('show');
+    observer.unobserve(entry.target);
+  });
+},appearOptions);
+faders.forEach(fader=>appearOnScroll.observe(fader));
+
+// Back to top
+const topBtn=document.getElementById('topBtn');
+window.onscroll=function(){
+  if(document.body.scrollTop>300||document.documentElement.scrollTop>300){
+    topBtn.style.display='block';
+  }else topBtn.style.display='none';
+};
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+
+// Formulario con alerta (simulación Google Sheets)
+document.getElementById('reservationForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  alert('¡Gracias por tu reserva! Recibirás confirmación en tu email.');
+  this.reset();
+});
+</script>
+
+</body>
+</html>
